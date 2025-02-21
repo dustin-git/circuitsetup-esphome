@@ -1,0 +1,11 @@
+i2c:
+    sda: $sda
+    scl: $scl
+sensor:
+  - platform: hdc1080
+    temperature:
+      name: $garage_temp_name
+    humidity:
+      name: $garage_humidity_name
+    address: 0x40
+    update_interval: $temp_update_interval

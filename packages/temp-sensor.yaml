@@ -1,0 +1,16 @@
+i2c:
+    sda: $sda
+    scl: $scl
+    frequency: 400kHz
+sensor:
+  - platform: hdc1080
+    temperature:
+      name: $garage_temp_name
+      # convert to Fahrenheit
+      filters:
+        - lambda: return x * (9.0/5.0) + 32.0;
+      unit_of_measurement: "°F"
+    humidity:
+      name: $garage_humidity_name
+    address: 0x40
+    update_interval: $temp_update_interval

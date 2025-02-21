@@ -3,7 +3,7 @@
 ## CircuitSetup Security+ Garage Door Opener
 ## Firmware configuration for ESPHome
 ##
-## filename: garage-door-esp32.yaml
+## filename: circuitsetup-secplus-garage-door-opener.yaml
 ## GitHub: https://github.com/CircuitSetup/circuitsetup-esphome
 ##
 ## Copyright© 2023 Konnected Inc.
@@ -51,19 +51,22 @@ substitutions:
   # By default, the name of the ESPHome device is "circuitsetup-xxxxxx" where xxxxxx is a unique identifier. The device's
   # hostname on your network is also defined by the name, defaulting to "circuitsetup-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
-  name: circuitsetup
+  name: circuitsetup-gdo
   friendly_name: Garage Door Opener
   project_name: circuitsetup.secplus-garage-door-opener
-  project_version: "1.4.0"
+  project_version: "1.0.0"
   garage_door_cover_name: Garage Door
   garage_light_name: Garage Light
   garage_openings_name: Garage Openings
+  garage_temp_name: Garage Temp
+  garage_humidity_name: Garage Humidity
   garage_lock_name: Lock
   garage_motion_name: Motion
   garage_obstruction_name: Obstruction
   garage_motor_name: Motor
   garage_button_name: Wall Button
   garage_sync_name: Synced
+  temp_update_interval: 60s
 
 
   ####
@@ -85,6 +88,8 @@ substitutions:
   warning_leds_pin: GPIO3
   status_led: GPIO18
   input1: GPIO6
+  sda: GPIO16
+  scl: GPIO15
 
 external_components:
   - source: github://CircuitSetup/circuitsetup-esphome@master
@@ -139,6 +144,11 @@ packages:
       - packages/status-led.yaml
 
       ####
+      # TEMP SENSOR
+      # The on-board temp & humidity sensor
+      - packages/temp-sensor.yaml
+
+      ####
       # SECPLUS GDO
       # The logic and capabilities of the GDO communication
       - packages/secplus-gdo.yaml
@@ -149,7 +159,7 @@ packages:
 # Enables automatic discovery and upgrades via ESPHome Dashboard
 # more: https://esphome.io/guides/getting_started_hassio.html
 dashboard_import:
-  package_import_url: github://CircuitSetup/circuitsetup-esphome/garage-door-GDOv2-Q.yaml@master
+  package_import_url: github://CircuitSetup/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master
   import_full_config: false
 
 ####

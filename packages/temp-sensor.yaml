@@ -1,7 +1,7 @@
 i2c:
     sda: $sda
     scl: $scl
-    frequency: 400kHz
+    frequency: 200kHz
 sensor:
   - platform: hdc1080
     temperature:

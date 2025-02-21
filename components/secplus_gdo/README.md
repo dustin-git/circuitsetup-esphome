@@ -2,14 +2,14 @@
 
 ## Documentation and Example Usage
 
-See [packages/secplus-gdo.yaml](https://github.com/konnected-io/konnected-esphome/blob/master/packages/secplus-gdo.yaml) for a complete example.
+See [packages/secplus-gdo.yaml](https://github.com/CircuitSetup/circuitsetup-esphome/blob/master/packages/secplus-gdo.yaml) for a complete example.
 
 ### Setup
 Import the component into your ESPHome config:
 
 ```
 external_components:
-  - source: github://konnected-io/konnected-esphome@master
+  - source: github://CircuitSetup/circuitsetup-esphome@master
     components: [ secplus_gdo ]
 ```
 

@@ -27,11 +27,6 @@ esp32:
 substitutions:
   status_led_inverted: "false"
 
-# overrides the MDNS component to add a Konnected service
-external_components:
-  - source: github://konnected-io/konnected-esphome@master
-    components: [ mdns, secplus_gdo ]
-
 text_sensor:
   - platform: template
     name: Device ID
@@ -60,5 +55,5 @@ button:
 # more: https://esphome.io/components/ota.html
 ota:
   - platform: esphome
-    id: konnected_ota
+    id: circuitsetup_ota
 

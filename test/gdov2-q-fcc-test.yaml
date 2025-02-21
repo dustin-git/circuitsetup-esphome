@@ -46,13 +46,13 @@ substitutions:
   rtttl_success: success:d=4,o=6,b=160:8e6,16f6,16g6,8a6,8g6,8e6,8g6,8a6
 
 external_components:
-  - source: github://konnected-io/konnected-esphome@master
+  - source: github://CircuitSetup/circuitsetup-esphome@master
     components: [ mdns, secplus_gdo ]
 
 packages:
 
   remote_package:
-    url: https://github.com/konnected-io/konnected-esphome
+    url: https://github.com/CircuitSetup/circuitsetup-esphome
     ref: master
     refresh: 5min
     files:

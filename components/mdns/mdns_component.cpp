@@ -25,10 +25,10 @@ void MDNSComponent::compile_records_() {
 
   this->services_.clear();
 
-  // Konnected service
+  // CircuitSetup service
   {  
     MDNSService service{};
-    service.service_type = "_konnected";
+    service.service_type = "_circuitsetup";
     service.proto = "_tcp";
     service.port = USE_WEBSERVER_PORT;
     if (!App.get_friendly_name().empty()) {
@@ -61,7 +61,7 @@ void MDNSComponent::compile_records_() {
     service.txt_records.push_back({"web_api", "true"});
 #endif
     this->services_.push_back(service);
-  } // end Konnected service
+  } // end CircuitSetup service
 
 #ifdef USE_API
   if (api::global_api_server != nullptr) {

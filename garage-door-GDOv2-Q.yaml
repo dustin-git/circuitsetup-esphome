@@ -1,12 +1,10 @@
 ####
 ##
-## Konnected Garage Door Opener blaQ (GDOv2-Q)
+## CircuitSetup Security+ Garage Door Opener
 ## Firmware configuration for ESPHome
 ##
 ## filename: garage-door-esp32.yaml
-## GitHub: https://github.com/konnected-io/konnected-esphome
-## Buy Konnected hardware: https://konnected.io
-## Help & Support: https://help@konnected.io (support is provided for purchasers of Konnected hardware)
+## GitHub: https://github.com/CircuitSetup/circuitsetup-esphome
 ##
 ## Copyright© 2023 Konnected Inc.
 ##
@@ -27,15 +25,14 @@
 ####
 # INTRODUCTION
 #
-# This ESPHome based firmware configuration is designed for the Konnected Garage Door Opener GDOv2-S which is built on the ESP32-S3-MINI.
-# The Garage Door Opener retrofits an older style traditional garage door opener with a dry-contact trigger and has the
-# following features which are included as packages below:
+# This ESPHome based firmware configuration is designed for the CircuitSetup Security+ Garage Door Opener, which is built on the ESP32-S3.
+# It allows you to use a Security+ Garage Door Opener in Home Assistant, and adds the following:
 #
-# 1. Wired contact sensor for detecting open/closed state of garage door
-# 2. Optical range sensor for detecting open/closed state of garage door
-# 3. Emulates a garage door opener button wired to a dry contact relay to open/close the garage door.
-# 4. Adds a Garage Door "Cover" entity that is exposed to Home Assistant. The cover entity incorporates the state of the
+# 1. Gets opened/closed door state and obstruction sensor data
+# 2. Emulates a Security+ garage door opener button.
+# 3. Adds a Garage Door "Cover" entity that is exposed to Home Assistant. The cover entity incorporates the state of the
 #    garage door and controls to open/close/stop it.
+# 4. Adds control of opener light
 # 5. Flashes an onboard LED and beeps an onboard piezo sounder as a warning before automatically closing.
 
 ####
@@ -51,12 +48,12 @@ substitutions:
 
   ####
   # NAME
-  # By default, the name of the ESPHome device is "konnected-xxxxxx" where xxxxxx is a unique identifier. The device's
-  # hostname on your network is also defined by the name, defaulting to "konnected-xxxxxx.local". Edit this variable to
+  # By default, the name of the ESPHome device is "circuitsetup-xxxxxx" where xxxxxx is a unique identifier. The device's
+  # hostname on your network is also defined by the name, defaulting to "circuitsetup-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
-  name: konnected
-  friendly_name: GDO blaQ
-  project_name: konnected.garage-door-gdov2-q
+  name: circuitsetup
+  friendly_name: Garage Door Opener
+  project_name: circuitsetup.secplus-garage-door-opener
   project_version: "1.4.0"
   garage_door_cover_name: Garage Door
   garage_light_name: Garage Light
@@ -81,17 +78,16 @@ substitutions:
 
   ####
   # INTERNAL MAPPINGS
-  # DO NOT EDIT these when using Konnected hardware
+  # DO NOT EDIT these when using CircuitSetup hardware
   uart_tx_pin: GPIO1
   uart_rx_pin: GPIO2
   warning_beep_pin: GPIO4
   warning_leds_pin: GPIO3
   status_led: GPIO18
-  input1: GPIO5
-  input2: GPIO9
+  input1: GPIO6
 
 external_components:
-  - source: github://konnected-io/konnected-esphome@master
+  - source: github://CircuitSetup/circuitsetup-esphome@master
     components: [ mdns, secplus_gdo ]
 
   # Un-comment below and comment above for local modification
@@ -107,7 +103,7 @@ external_components:
 packages:
 
   remote_package:
-    url: https://github.com/konnected-io/konnected-esphome
+    url: https://github.com/CircuitSetup/circuitsetup-esphome
     ref: master
     refresh: 5min
     files:
@@ -120,7 +116,7 @@ packages:
       ####
       # WIFI
       # Enables WiFi connectivity and diagnostics. Uncommet below to enable WiFi.
-      # wifi: !include packages/wifi.yaml
+      # wifi: !include packages/wifi-esp32.yaml
       - packages/wifi-esp32.yaml
 
       ####
@@ -153,7 +149,7 @@ packages:
 # Enables automatic discovery and upgrades via ESPHome Dashboard
 # more: https://esphome.io/guides/getting_started_hassio.html
 dashboard_import:
-  package_import_url: github://konnected-io/konnected-esphome/garage-door-GDOv2-Q.yaml@master
+  package_import_url: github://CircuitSetup/circuitsetup-esphome/garage-door-GDOv2-Q.yaml@master
   import_full_config: false
 
 ####
@@ -188,6 +184,6 @@ web_server:
 esphome:
   platformio_options:
     lib_deps:
-      - https://github.com/konnected-io/gdolib#4a55112
+      - https://github.com/CircuitSetup/gdolib
     build_flags:
       - -Wl,--wrap=esp_panic_handler

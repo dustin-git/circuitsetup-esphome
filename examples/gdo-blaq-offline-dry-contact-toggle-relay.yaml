@@ -4,7 +4,7 @@
 ## Firmware configuration for ESPHome
 ##
 ## filename: garage-door-esp32.yaml
-## GitHub: https://github.com/konnected-io/konnected-esphome
+## GitHub: https://github.com/CircuitSetup/circuitsetup-esphome
 ## Buy Konnected hardware: https://konnected.io
 ## Help & Support: https://help@konnected.io (support is provided for purchasers of Konnected hardware)
 ##
@@ -84,7 +84,7 @@ substitutions:
   input2: GPIO9
 
 external_components:
-  - source: github://konnected-io/konnected-esphome@master
+  - source: github://CircuitSetup/circuitsetup-esphome@master
     components: [ secplus_gdo ]
 
   # Un-comment below and comment above for local modification
@@ -100,7 +100,7 @@ external_components:
 packages:
 
   remote_package:
-    url: https://github.com/konnected-io/konnected-esphome
+    url: https://github.com/CircuitSetup/circuitsetup-esphome
     ref: master
     refresh: 5min
     files:

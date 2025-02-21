@@ -1,4 +1,9 @@
 wifi:
+  on_connect:
+    - delay: 5s
+    - ble.disable:
+  on_disconnect:
+    - ble.enable:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
 

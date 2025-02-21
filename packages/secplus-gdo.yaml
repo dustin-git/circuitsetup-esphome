@@ -4,20 +4,20 @@ script:
       - button.press: pre_close_warning
 
 secplus_gdo:
-  id: gdo_blaq
+  id: cs_gdo
   input_gdo_pin: ${uart_rx_pin}
   output_gdo_pin: ${uart_tx_pin}
 
 light:
   - platform: secplus_gdo
     name: $garage_light_name
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     id: gdo_light
 
 cover:
   - platform: secplus_gdo
     name: $garage_door_cover_name
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     id: gdo_door
     pre_close_warning_duration: $garage_door_close_warning_duration
     pre_close_warning_start:
@@ -29,7 +29,7 @@ cover:
 
 sensor:
   - platform: secplus_gdo
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     id: gdo_openings
     type: openings
     name: $garage_openings_name
@@ -39,37 +39,37 @@ sensor:
 lock:
   - platform: secplus_gdo
     id: gdo_lock_remotes
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     name: $garage_lock_name
 
 binary_sensor:
   - platform: secplus_gdo
     name: $garage_motion_name
     id: gdo_motion
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     device_class: motion
     type: motion
   - platform: secplus_gdo
     name: $garage_obstruction_name
     id: gdo_obst
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     device_class: problem
     type: obstruction
   - platform: secplus_gdo
     name: $garage_motor_name
     id: gdo_motor
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     device_class: running
     type: motor
   - platform: secplus_gdo
     name: $garage_button_name
     id: gdo_button
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     type: button
   - platform: secplus_gdo
     name: $garage_sync_name
     id: gdo_synced
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     type: sync
     device_class: connectivity
 
@@ -77,13 +77,13 @@ switch:
   - platform: secplus_gdo
     id: gdo_learn
     type: learn
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     name: Learn
     icon: mdi:plus-box
   - platform: secplus_gdo
     id: gdo_toggle_only
     type: toggle_only
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     name: Toggle Only
     icon: mdi:plus-box
     entity_category: config
@@ -91,7 +91,7 @@ switch:
 select:
   - platform: secplus_gdo
     id: gdo_protocol
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     name: Security+ protocol
     icon: mdi:settings
     entity_category: config
@@ -135,7 +135,7 @@ button:
 number:
   - platform: secplus_gdo
     name: Opening duration
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     entity_category: config
     id: gdo_open_duration
     type: open_duration
@@ -144,7 +144,7 @@ number:
 
   - platform: secplus_gdo
     name: Closing duration
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     entity_category: config
     id: gdo_close_duration
     type: close_duration
@@ -153,7 +153,7 @@ number:
 
   - platform: secplus_gdo
     name: Client ID
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     entity_category: config
     id: gdo_client_id
     type: client_id
@@ -162,7 +162,7 @@ number:
 
   - platform: secplus_gdo
     name: Rolling Code
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     entity_category: config
     id: gdo_rolling_code
     type: rolling_code
@@ -171,4 +171,4 @@ number:
 
 wifi:
   on_connect:
-    lambda: id(gdo_blaq).start_gdo();
+    lambda: id(cs_gdo).start_gdo();

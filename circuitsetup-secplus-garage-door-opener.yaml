@@ -48,8 +48,8 @@ substitutions:
 
   ####
   # NAME
-  # By default, the name of the ESPHome device is "circuitsetup-xxxxxx" where xxxxxx is a unique identifier. The device's
-  # hostname on your network is also defined by the name, defaulting to "circuitsetup-xxxxxx.local". Edit this variable to
+  # By default, the name of the ESPHome device is "circuitsetup-gdo-xxxxxx" where xxxxxx is a unique identifier. The device's
+  # hostname on your network is also defined by the name, defaulting to "circuitsetup-gdo-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
   name: circuitsetup-gdo
   friendly_name: Garage Door Opener

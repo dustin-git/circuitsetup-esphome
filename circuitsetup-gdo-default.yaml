@@ -1,0 +1,6 @@
+packages:
+  circuitsetup.secplus-garage-door-opener: github://CircuitSetup/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

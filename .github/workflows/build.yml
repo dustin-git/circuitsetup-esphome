@@ -43,7 +43,7 @@ jobs:
         run: esphome compile "${{ matrix.files }}"
 
       - name: Upload Firmware
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: "${{ matrix.files }}-firmware"
           path: |

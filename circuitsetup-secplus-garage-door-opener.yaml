@@ -40,10 +40,6 @@
 # Customize these variables to your preferences and needs
 # more: https://esphome.io/guides/configuration-types.html#substitutions
 
-####
-# GENERAL SETTINGS
-# Customize these variables to your preferences and needs
-# more: https://esphome.io/guides/configuration-types.html#substitutions
 substitutions:
 
   ####

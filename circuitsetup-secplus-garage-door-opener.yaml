@@ -211,6 +211,6 @@ sensor:
       } else {
         return "Unknown";
       }
-    update_interval: never
+    update_interval: 30s
     entity_category: diagnostic
 

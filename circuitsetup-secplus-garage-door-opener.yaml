@@ -192,3 +192,25 @@ esphome:
       - https://github.com/CircuitSetup/gdolib
     build_flags:
       - -Wl,--wrap=esp_panic_handler
+
+sensor:
+  - platform: secplus_gdo
+    battery:
+      id: gdo_battery_raw
+      name: "Garage Door Battery (Raw)"
+
+  - platform: template
+    name: "Garage Door Battery State"
+    lambda: |-
+      if (id(gdo_battery_raw).state == 1) {
+        return "Good";
+      } else if (id(gdo_battery_raw).state == 2) {
+        return "Weak";
+      } else if (id(gdo_battery_raw).state == 3) {
+        return "Dead";
+      } else {
+        return "Unknown";
+      }
+    update_interval: never
+    entity_category: diagnostic
+

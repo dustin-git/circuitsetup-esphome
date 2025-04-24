@@ -14,7 +14,10 @@ esphome:
       then:
         - text_sensor.template.publish:
             id: device_id
-            state: !lambda 'return get_mac_address();'
+            state: !lambda return get_mac_address();
+        - text_sensor.template.publish:
+            id: project_version
+            state: !lambda return ESPHOME_PROJECT_VERSION;
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -36,6 +39,11 @@ text_sensor:
   - platform: version
     name: ESPHome Version
     hide_timestamp: true
+  - platform: template
+    name: Project version
+    id: project_version
+    entity_category: diagnostic
+    update_interval: never
 
 sensor:
   - platform: uptime
@@ -56,4 +64,3 @@ button:
 ota:
   - platform: esphome
     id: circuitsetup_ota
-

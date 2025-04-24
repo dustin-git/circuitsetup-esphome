@@ -90,7 +90,7 @@ substitutions:
 
 external_components:
   - source: github://CircuitSetup/circuitsetup-esphome@master
-    components: [ mdns, secplus_gdo ]
+    components: [ secplus_gdo ]
 
   # Un-comment below and comment above for local modification
   # - source:

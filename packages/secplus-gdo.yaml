@@ -36,16 +36,6 @@ sensor:
     unit_of_measurement: openings
     icon: mdi:open-in-app
 
-text_sensor:
-  - platform: secplus_gdo
-    secplus_gdo_id: cs_gdo
-    type: device_type
-    name: "Device Type"
-  - platform: secplus_gdo
-    secplus_gdo_id: cs_gdo
-    type: manufacturer
-    name: "Manufacturer"
-
 lock:
   - platform: secplus_gdo
     id: gdo_lock_remotes

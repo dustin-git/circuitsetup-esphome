@@ -23,8 +23,6 @@ import voluptuous as vol
 from esphome import pins
 from esphome.const import CONF_ID
 
-from . import text_sensor
-
 DEPENDENCIES = ["preferences"]
 MULTI_CONF = True
 

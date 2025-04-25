@@ -113,14 +113,14 @@ namespace secplus_gdo {
             ESP_LOGI(TAG, "Device Type: %s (0x%02X), Manufacturer ID: %s (0x%02X)",
                     gdo_device_type_to_string(status->device_type),
                     status->device_type,
-                    gdo_manufacturer_to_string(status->manufacturer_id),
-                    status->manufacturer_id);
+                    gdo_manufacturer_to_string(status->manufacturer),
+                    status->manufacturer);
 
             char buf[32];
             snprintf(buf, sizeof(buf), "%s", gdo_device_type_to_string(status->device_type));
             gdo->set_device_type(buf);
 
-            snprintf(buf, sizeof(buf), "%s", gdo_manufacturer_to_string(status->manufacturer_id));
+            snprintf(buf, sizeof(buf), "%s", gdo_manufacturer_to_string(status->manufacturer));
             gdo->set_manufacturer(buf);
             break;
         }

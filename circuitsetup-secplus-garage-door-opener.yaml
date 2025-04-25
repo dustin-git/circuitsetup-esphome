@@ -107,7 +107,7 @@ packages:
   remote_package:
     url: https://github.com/CircuitSetup/circuitsetup-esphome
     ref: master
-    refresh: 5min
+    refresh: 1min
     files:
 
       ####

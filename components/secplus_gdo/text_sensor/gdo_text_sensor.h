@@ -7,8 +7,8 @@ namespace esphome {
 namespace secplus_gdo {
 
 enum TextSensorType : uint8_t {
-  TEXT_SENSOR_TYPE_DEVICE_TYPE,
-  TEXT_SENSOR_TYPE_MANUFACTURER,
+  DEVICE_TYPE,
+  MANUFACTURER,
 };
 
 class GDOTextSensor : public text_sensor::TextSensor, public Component {

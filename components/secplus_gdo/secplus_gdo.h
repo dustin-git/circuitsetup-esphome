@@ -27,6 +27,7 @@
 #include "lock/gdo_lock.h"
 #include "text_sensor/gdo_text_sensor.h"
 #include "gdo.h"
+#include "gdo_priv.h
 
 namespace esphome {
 namespace secplus_gdo {

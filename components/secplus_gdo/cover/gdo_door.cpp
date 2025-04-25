@@ -78,7 +78,7 @@ void GDODoor::do_action_after_warning(const cover::CoverCall& call) {
         this->pre_close_start_trigger->trigger();
     }
 
-    this->set_timeout("pre_close", this->pre_close_duration_, [this]() {
+    this->set_timeout("pre_close", this->pre_close_duration_, [=]() {
         this->pre_close_active_ = false;
         if (this->pre_close_end_trigger) {
             this->pre_close_end_trigger->trigger();
@@ -113,10 +113,10 @@ void GDODoor::do_action(const cover::CoverCall& call) {
                 gdo_door_toggle();
                 if (this->state_ == GDO_DOOR_STATE_STOPPED && this->prev_operation == COVER_OPERATION_OPENING) {
                     // If the door was stopped while opening, then we need to toggle to stop, then toggle again to open,
-                    this->set_timeout("stop_door", 1000, [this]() {
+                    this->set_timeout("stop_door", 1000, [=]() {
                         gdo_door_stop();
                     });
-                    this->set_timeout("open_door", 2000, [this]() {
+                    this->set_timeout("open_door", 2000, [=]() {
                         gdo_door_toggle();
                     });
                 }
@@ -132,10 +132,10 @@ void GDODoor::do_action(const cover::CoverCall& call) {
                 gdo_door_toggle();
                 if (this->state_ == GDO_DOOR_STATE_STOPPED && this->prev_operation == COVER_OPERATION_CLOSING) {
                     // If the door was stopped while closing, then we need to toggle to stop, then toggle again to close,
-                    this->set_timeout("stop_door", 1000, [this]() {
+                    this->set_timeout("stop_door", 1000, [=]() {
                         gdo_door_stop();
                     });
-                    this->set_timeout("close_door", 2000, [this]() {
+                    this->set_timeout("close_door", 2000, [=]() {
                         gdo_door_toggle();
                     });
                 }

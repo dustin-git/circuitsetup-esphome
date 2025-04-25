@@ -6,7 +6,7 @@
 namespace esphome {
 namespace secplus_gdo {
 
-class GDOTextSensor : public text_sensor::TextSensor {
+class GDOTextSensor : public text_sensor::TextSensor, public Component {
  public:
   GDOTextSensor() = default;
 

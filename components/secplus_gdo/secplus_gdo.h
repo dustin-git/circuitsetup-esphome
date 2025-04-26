@@ -25,9 +25,7 @@
 #include "cover/gdo_door.h"
 #include "light/gdo_light.h"
 #include "lock/gdo_lock.h"
-#include "text_sensor/gdo_text_sensor.h"
 #include "gdo.h"
-#include "gdo_priv.h"
 
 namespace esphome {
 namespace secplus_gdo {
@@ -96,12 +94,6 @@ namespace secplus_gdo {
 
         void set_sync_state(bool synced);
 
-        void register_device_type(GDOTextSensor* sensor) { this->device_type_ = sensor; }
-        void set_device_type(const std::string& val) { if (this->device_type_) this->device_type_->publish_state(val); }
-
-        void register_manufacturer(GDOTextSensor* sensor) { this->manufacturer_ = sensor; }
-        void set_manufacturer(const std::string& val) { if (this->manufacturer_) this->manufacturer_->publish_state(val); }
-
     protected:
         gdo_status_t                                 status_{};
         std::function<void(uint16_t)>                f_openings{nullptr};
@@ -120,8 +112,6 @@ namespace secplus_gdo {
         GDOSelect*                                   protocol_select_{nullptr};
         GDOSwitch*                                   learn_switch_{nullptr};
         GDOSwitch*                                   toggle_only_switch_{nullptr};
-        GDOTextSensor*                               device_type_{nullptr};
-        GDOTextSensor*                               manufacturer_{nullptr};
         bool                                         start_gdo_{false};
 
     }; // GDOComponent

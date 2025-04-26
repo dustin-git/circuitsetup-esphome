@@ -109,22 +109,6 @@ namespace secplus_gdo {
             ESP_LOGI(TAG, "Close duration: %d", status->close_ms);
             gdo->set_close_duration(status->close_ms);
             break;
-        case GDO_CB_EVENT_METADATA: {
-            ESP_LOGI(TAG, "Device Type: %s (0x%02X), Manufacturer ID: %s (0x%02X)",
-                    gdo_device_type_to_string(status->device_type),
-                    status->device_type,
-                    gdo_manufacturer_to_string(status->manufacturer),
-                    status->manufacturer);
-
-            char buf[32];
-            snprintf(buf, sizeof(buf), "%s", gdo_device_type_to_string(status->device_type));
-            gdo->set_device_type(buf);
-
-            snprintf(buf, sizeof(buf), "%s", gdo_manufacturer_to_string(status->manufacturer));
-            gdo->set_manufacturer(buf);
-            break;
-        }
-
         default:
             ESP_LOGI(TAG, "Unknown event: %d", event);
             break;
@@ -153,7 +137,7 @@ namespace secplus_gdo {
             ESP_LOGI(TAG, "secplus GDO started!");
         } else {
             // check every 500ms for readiness before starting GDO
-            this->set_interval("gdo_start", 500, [this]() {
+            this->set_interval("gdo_start", 500, [=]() {
                 if (this->start_gdo_) {
                     gdo_start(gdo_event_handler, this);
                     ESP_LOGI(TAG, "secplus GDO started!");

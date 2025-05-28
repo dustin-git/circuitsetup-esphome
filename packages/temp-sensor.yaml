@@ -9,12 +9,30 @@ sensor:
       # convert to Fahrenheit
       filters:
         - lambda: |-
-            float fahrenheit = x * (9.0 / 5.0) + 32.0;
-            return fahrenheit * ${temp_adjust};
+            # convert to fahrenheit
+            float temp_f = x * (9.0 / 5.0) + 32.0;
+            return temp_f * ${temp_adjust};
       unit_of_measurement: "°F"
     humidity:
       name: $garage_humidity_name
       filters:
-        - multiply: $humidity_adjust
+        - lambda: |-
+            // Compute current dew point (Magnus formula simplified)
+            float temp_f = id($garage_temp_name).state;
+            float rh = x;
+            float temp_c = (temp_f - 32.0) * 5.0 / 9.0;
+            float gamma = log(rh / 100.0) + (17.625 * temp_c) / (243.04 + temp_c);
+            float dew_point_c = (243.04 * gamma) / (17.625 - gamma);
+            float dew_point_f = (dew_point_c * 9.0 / 5.0) + 32.0;
+
+            // Apply dew point offset
+            float corrected_dew_point_f = dew_point_f + ${dew_point_offset};
+
+            // Reverse calculate humidity from corrected dew point
+            float corrected_dew_point_c = (corrected_dew_point_f - 32.0) * 5.0 / 9.0;
+            float gamma_corr = (17.625 * corrected_dew_point_c) / (243.04 + corrected_dew_point_c);
+            float rh_corrected = 100.0 * exp(gamma_corr - (17.625 * temp_c) / (243.04 + temp_c));
+
+            return rh_corrected;
     address: 0x40
     update_interval: $temp_update_interval

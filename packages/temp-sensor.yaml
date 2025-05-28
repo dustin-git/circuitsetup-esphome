@@ -9,7 +9,7 @@ sensor:
       # convert to Fahrenheit
       filters:
         - lambda: |-
-            # convert to fahrenheit
+            // convert to fahrenheit
             float temp_f = x * (9.0 / 5.0) + 32.0;
             return temp_f * ${temp_adjust};
       unit_of_measurement: "°F"

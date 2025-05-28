@@ -50,7 +50,7 @@ substitutions:
   name: circuitsetup-gdo
   friendly_name: Garage Door Opener
   project_name: circuitsetup.secplus-garage-door-opener
-  project_version: "1.1.0"
+  project_version: "1.1.1"
   garage_door_cover_name: Garage Door
   garage_light_name: Garage Light
   garage_openings_name: Garage Openings
@@ -63,6 +63,8 @@ substitutions:
   garage_button_name: Wall Button
   garage_sync_name: Synced
   temp_update_interval: 60s
+  temp_adjust: "0.8825" # 1-0.1175 - 11.75% decrease
+  humidity_adjust: "1.5070" # 1+0.5070 - 50.70% increase
 
 
   ####

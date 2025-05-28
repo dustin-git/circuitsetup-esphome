@@ -8,9 +8,13 @@ sensor:
       name: $garage_temp_name
       # convert to Fahrenheit
       filters:
-        - lambda: return x * (9.0/5.0) + 32.0;
+        - lambda: |-
+            float fahrenheit = x * (9.0 / 5.0) + 32.0;
+            return fahrenheit * ${temp_adjust};
       unit_of_measurement: "°F"
     humidity:
       name: $garage_humidity_name
+      filters:
+        - multiply: $humidity_adjust
     address: 0x40
     update_interval: $temp_update_interval

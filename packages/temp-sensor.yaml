@@ -6,6 +6,7 @@ sensor:
   - platform: hdc1080
     temperature:
       name: $garage_temp_name
+      id: garage_temp_sensor
       # convert to Fahrenheit
       filters:
         - lambda: |-
@@ -18,7 +19,7 @@ sensor:
       filters:
         - lambda: |-
             // Compute current dew point (Magnus formula simplified)
-            float temp_f = id($garage_temp_name).state;
+            float temp_f = id(garage_temp_sensor).state;
             float rh = x;
             float temp_c = (temp_f - 32.0) * 5.0 / 9.0;
             float gamma = log(rh / 100.0) + (17.625 * temp_c) / (243.04 + temp_c);

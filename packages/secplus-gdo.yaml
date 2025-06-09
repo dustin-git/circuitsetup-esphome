@@ -99,7 +99,7 @@ select:
 button:
   - platform: factory_reset
     name: Factory Reset
-    id: factory_reset
+    id: hard_reset
     entity_category: config
   - platform: template
     name: Reset door timings

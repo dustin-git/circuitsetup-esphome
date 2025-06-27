@@ -74,8 +74,8 @@ substitutions:
   ####
   # INTERNAL MAPPINGS
   # DO NOT EDIT these when using circuitsetup hardware
-  door_control_pin: GPIO7
-  wired_sensor_pin: GPIO5
+  door_control_pin: GPIO7 # Aux Out
+  wired_sensor_pin: GPIO5 # Aux In 1
   warning_beep_pin: GPIO4
   warning_leds_pin: GPIO3
   status_led: GPIO18

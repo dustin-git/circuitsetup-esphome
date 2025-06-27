@@ -1,0 +1,16 @@
+binary_sensor:
+  - pin: 
+      number: $wired_sensor_pin
+      mode: INPUT_PULLUP
+    device_class: garage_door
+    id: garage_door_input
+    name: Wired Sensor
+    platform: gpio   
+    filters:
+      - delayed_on_off: $sensor_debounce_time
+    on_state:
+      - if:
+          condition:
+            lambda: return id(blink_on_state);
+          then:
+            - script.execute: blink_status_led

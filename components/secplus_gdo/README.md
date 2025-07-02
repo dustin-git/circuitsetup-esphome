@@ -16,7 +16,7 @@ external_components:
 Include the component:
 ```
 secplus_gdo:
-  id: gdo_blaq
+  id: cs_gdo
   input_gdo_pin: ${uart_rx_pin}
   output_gdo_pin: ${uart_tx_pin}
 ```
@@ -27,7 +27,7 @@ secplus_gdo:
 cover:
   - platform: secplus_gdo
     name: Garage Door
-    secplus_gdo_id: gdo_blaq
+    secplus_gdo_id: cs_gdo
     id: gdo_door
     pre_close_warning_duration: 5s
     pre_close_warning_start:

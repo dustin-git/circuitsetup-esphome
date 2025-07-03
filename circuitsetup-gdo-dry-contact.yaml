@@ -30,11 +30,11 @@
 # following features which are included as packages below:
 #
 # 1. Wired contact sensor for detecting open/closed state of garage door
-# 2. Optical range sensor for detecting open/closed state of garage door
-# 3. Emulates a garage door opener button wired to a dry contact relay to open/close the garage door.
-# 4. Adds a Garage Door "Cover" entity that is exposed to Home Assistant. The cover entity incorporates the state of the 
+# 2. Emulates a garage door opener button wired to a dry contact relay to open/close the garage door.
+# 3. Adds a Garage Door "Cover" entity that is exposed to Home Assistant. The cover entity incorporates the state of the 
 #    garage door and controls to open/close/stop it.
-# 5. Flashes an onboard LED and beeps an onboard piezo sounder as a warning before automatically closing.
+# 4. Flashes an onboard LED and beeps an onboard piezo sounder as a warning before automatically closing.
+# 5. Provides garage temp and humidity
 
 ####
 # GENERAL SETTINGS
@@ -93,7 +93,7 @@ packages:
   remote_package:
     url: https://github.com/circuitsetup/circuitsetup-esphome
     ref: master
-    refresh: 5min
+    refresh: 1d
     files:
 
       ####

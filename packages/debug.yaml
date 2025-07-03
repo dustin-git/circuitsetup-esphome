@@ -5,10 +5,12 @@ text_sensor:
   - platform: debug
     reset_reason:
       name: "Reboot Reason"
+      id: reboot_reason_sensor
       entity_category: diagnostic
 
 sensor:
   - platform: debug
     free:
       name: "Heap Free"
+      id: heap_free_sensor
       entity_category: diagnostic

@@ -26,8 +26,8 @@ cover:
           condition:
             lambda: return id(garage_door).position == COVER_OPEN;
           then:
-            - button.press: pre_close_warning
-            - delay: $garage_door_close_warning_duration
+#            - button.press: pre_close_warning
+#            - delay: $garage_door_close_warning_duration
             - button.press: garage_door_opener_button
             - cover.template.publish:
                 id: garage_door
@@ -44,8 +44,8 @@ cover:
           condition:
             lambda: return id(garage_door).position == COVER_OPEN;
           then:
-            - button.press: pre_close_warning
-            - delay: $garage_door_close_warning_duration
+#            - button.press: pre_close_warning
+#            - delay: $garage_door_close_warning_duration
             - cover.template.publish:
                 id: garage_door
                 current_operation: CLOSING

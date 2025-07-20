@@ -1,2 +1,2 @@
 packages:
-  circuitsetup.secplus-garage-door-opener: github://CircuitSetup/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master
+  circuitsetup.secplus-garage-door-opener: github://dustin-git/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master

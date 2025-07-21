@@ -1,0 +1,199 @@
+####
+##
+## CircuitSetup Security+ Garage Door Opener
+## Firmware configuration for ESPHome
+##
+## filename: circuitsetup-secplus-garage-door-opener.yaml
+## GitHub: https://github.com/CircuitSetup/circuitsetup-esphome
+##
+## Copyright© 2023 Konnected Inc.
+##
+## Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+## files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+## modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+## is furnished to do so, subject to the following conditions:
+##
+## The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+##
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+## OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+## LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+## IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+##
+####
+
+####
+# INTRODUCTION
+#
+# This ESPHome based firmware configuration is designed for the CircuitSetup Security+ Garage Door Opener, which is built on the ESP32-S3.
+# It allows you to use a Security+ Garage Door Opener in Home Assistant, and adds the following:
+#
+# 1. Gets opened/closed door state and obstruction sensor data
+# 2. Emulates a Security+ garage door opener button.
+# 3. Adds a Garage Door "Cover" entity that is exposed to Home Assistant. The cover entity incorporates the state of the
+#    garage door and controls to open/close/stop it.
+# 4. Adds control of opener light
+# 5. Flashes an onboard LED and beeps an onboard piezo sounder as a warning before automatically closing.
+
+####
+# GENERAL SETTINGS
+# Customize these variables to your preferences and needs
+# more: https://esphome.io/guides/configuration-types.html#substitutions
+
+substitutions:
+
+  ####
+  # NAME
+  # By default, the name of the ESPHome device is "circuitsetup-gdo-xxxxxx" where xxxxxx is a unique identifier. The device's
+  # hostname on your network is also defined by the name, defaulting to "circuitsetup-gdo-xxxxxx.local". Edit this variable to
+  # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
+  name: circuitsetup-gdo-spare
+  friendly_name: Garage Door Opener - Spare
+  project_name: circuitsetup.secplus-garage-door-opener
+  project_version: "1.1.1"
+  garage_door_cover_name: Garage Door
+  garage_light_name: Garage Light
+  garage_openings_name: Garage Openings
+  garage_temp_name: Garage Temp
+  garage_humidity_name: Garage Humidity
+  garage_lock_name: Lock
+  garage_motion_name: Motion
+  garage_obstruction_name: Obstruction
+  garage_motor_name: Motor
+  garage_button_name: Wall Button
+  garage_sync_name: Synced
+  temp_update_interval: 60s
+  temp_adjust: "0.8825" # 1-0.1175 - 11.75% decrease
+  dew_point_offset: "1.3" # Offset in °F to correct sensor's lower dew point reading
+
+
+  ####
+  # GARAGE DOOR CLOSE WARNING DURATION
+  # Duration to blink the warning LED and beep the buzzer before the garage door closes.
+  garage_door_close_warning_duration: 0s
+
+  ####
+  # ADDITIONAL SETTTINGS
+  sensor_debounce_time: 200ms
+  blink_on_state: "true"
+
+  ####
+  # INTERNAL MAPPINGS
+  # DO NOT EDIT these when using CircuitSetup hardware
+  uart_tx_pin: GPIO1
+  uart_rx_pin: GPIO2
+  warning_beep_pin: GPIO4
+  warning_leds_pin: GPIO3
+  status_led: GPIO18
+  input1: GPIO5
+  input2: GPIO6
+  sda: GPIO16
+  scl: GPIO15
+
+external_components:
+  - source: github://CircuitSetup/circuitsetup-esphome@master
+    components: [ secplus_gdo ]
+
+  # Un-comment below and comment above for local modification
+  # - source:
+  #     type: local
+  #     path: components
+  #   components: [ secplus_gdo ]
+
+####
+# PACKAGES
+# Each package includes a Garage Door Opener feature described
+# Remove or comment out any packages that you do not need or want.
+packages:
+
+  remote_package:
+    url: https://github.com/dustin-git/circuitsetup-esphome
+    ref: master
+    refresh: 1d
+    files:
+
+      ####
+      # CORE
+      # This package is required and sets up core ESPHome features.
+      - packages/core-esp32-s3.yaml
+
+      ####
+      # WIFI
+      # Enables WiFi connectivity and diagnostics. Uncommet below to enable WiFi.
+      # wifi: !include packages/wifi-esp32.yaml
+      - packages/wifi-esp32.yaml
+
+      ####
+      # WARNING LED
+      # Enables the onboard warning LED light, with strobe effect. Used to visually warn of garage door automatic closing.
+      # warning_led: !include packages/warning-led.yaml
+      - packages/warning-led.yaml
+
+      ####
+      # PRE-CLOSE WARNING
+      # Enables a pleasant and customizable pre-close warning tone  using the onboard piezo buzzer. Used to audibly
+      # warn of a garage door automatic closing.
+      - packages/buzzer-rtttl.yaml
+      - packages/pre-close-warning-tones.yaml
+
+      ####
+      # STATUS LED
+      # Enables the onboard blue status LED as an activity/error indicator
+      # status_led: !include packages/status-led.yaml
+      - packages/status-led.yaml
+
+      ####
+      # TEMP SENSOR
+      # The on-board temp & humidity sensor
+      - packages/temp-sensor.yaml
+
+      ####
+      # SECPLUS GDO
+      # The logic and capabilities of the GDO communication
+      - packages/secplus-gdo.yaml
+      - packages/debug.yaml
+
+####
+# DASHBOARD IMPORT
+# Enables automatic discovery and upgrades via ESPHome Dashboard
+# more: https://esphome.io/guides/getting_started_hassio.html
+dashboard_import:
+  package_import_url: github://dustin-git/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master
+  import_full_config: false
+
+####
+# LOGGER
+# more: https://esphome.io/components/logger.html
+logger:
+  level: VERBOSE
+  logs:
+    esp-idf: VERBOSE
+    api: VERBOSE
+    api.service: DEBUG
+    esp32_ble: DEBUG
+    esp32_ble_server: DEBUG
+    scheduler: DEBUG
+    esp32.preferences: DEBUG
+    sensor.filter: DEBUG
+    rtttl: DEBUG
+    cover: DEBUG
+    sensor: DEBUG
+    ledc.output: INFO
+    json: INFO
+
+####
+# NATIVE API
+# Enables the native ESPHome API
+# more: https://esphome.io/components/api.html
+api:
+  encryption:
+    key: "le2zl90NpPqMQz9F6557qHaLyrTbdAPiZS4cRfI8cAU="
+
+web_server:
+
+esphome:
+  platformio_options:
+    lib_deps:
+      - https://github.com/CircuitSetup/gdolib
+    build_flags:
+      - -Wl,--wrap=esp_panic_handler

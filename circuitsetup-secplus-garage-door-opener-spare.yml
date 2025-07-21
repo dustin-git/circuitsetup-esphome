@@ -121,7 +121,7 @@ packages:
       # WIFI
       # Enables WiFi connectivity and diagnostics. Uncommet below to enable WiFi.
       # wifi: !include packages/wifi-esp32.yaml
-      - packages/wifi-esp32.yaml
+#      - packages/wifi-esp32.yaml
 
       ####
       # WARNING LED
@@ -160,6 +160,15 @@ packages:
 dashboard_import:
   package_import_url: github://dustin-git/circuitsetup-esphome/circuitsetup-secplus-garage-door-opener.yaml@master
   import_full_config: false
+
+wifi:
+  ssid: !secret wifi_not_ssid
+  password: !secret wifi_not_password
+  manual_ip:
+    static_ip: 192.168.53.46
+    gateway: 192.168.53.1
+    subnet: 255.255.255.0
+    dns1: 192.168.50.253
 
 ####
 # LOGGER

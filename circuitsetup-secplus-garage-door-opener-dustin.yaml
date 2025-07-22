@@ -196,7 +196,7 @@ logger:
 # more: https://esphome.io/components/api.html
 api:
   encryption:
-    key: "le2zl90NpPqMQz9F6557qHaLyrTbdAPiZS4cRfI8cAU="
+    key: "Z5+CXl1QM7E6swoBC9/qrr/kqKTupiwkXcU0BY24gWE="
 
 web_server:
 

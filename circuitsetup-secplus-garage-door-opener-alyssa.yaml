@@ -47,7 +47,7 @@ substitutions:
   # By default, the name of the ESPHome device is "circuitsetup-gdo-xxxxxx" where xxxxxx is a unique identifier. The device's
   # hostname on your network is also defined by the name, defaulting to "circuitsetup-gdo-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
-  name: circuitsetup-gdo-0394
+  name: circuitsetup-gdo-alyssa
   friendly_name: Garage Door Opener - Alyssa
   project_name: circuitsetup.secplus-garage-door-opener
   project_version: "1.1.1"
@@ -165,7 +165,7 @@ wifi:
   ssid: !secret wifi_not_ssid
   password: !secret wifi_not_password
   manual_ip:
-    static_ip: 192.168.53.47
+    static_ip: 192.168.53.48
     gateway: 192.168.53.1
     subnet: 255.255.255.0
     dns1: 192.168.50.253
@@ -196,7 +196,7 @@ logger:
 # more: https://esphome.io/components/api.html
 api:
   encryption:
-    key: "Z5+CXl1QM7E6swoBC9/qrr/kqKTupiwkXcU0BY24gWE="
+    key: "4oLHKOZNLP+TKpLxCm5IGiqOhZHT22bSCkNyEpVopW0="
 
 web_server:
 
